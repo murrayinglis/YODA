@@ -21,7 +21,6 @@ y = []
 for line in lines:
     parts = line.split()
     x.append(int(parts[0]))
-    y.append(int(parts[1]))
 
 # Apply 2nd order smoothing filter (moving average)
 window_size = 3  # Adjust window size as needed

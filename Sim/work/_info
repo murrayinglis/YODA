@@ -1,0 +1,59 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+vFIR
+Z0 !s110 1713868418
+!i10b 1
+!s100 gj[lKD2n6nJg0ZXe6SZRH0
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I?Q2g0WYW<DT41lAK`Ujhk2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim
+w1713359560
+8C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/fir_v.v
+FC:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/fir_v.v
+!i122 0
+L0 3 182
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1713868418.000000
+!s107 C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/fir_v.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/fir_v.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+n@f@i@r
+vtb_FIR
+R0
+!i10b 1
+!s100 `GQY[MJJdz3L3eHin43>H1
+R1
+I>A3Un[zSYLW_7gTH:Yn`C1
+R2
+R3
+w1713359566
+8C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/tb_fir_v.v
+FC:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/tb_fir_v.v
+!i122 1
+L0 3 217
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/tb_fir_v.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/tb_fir_v.v|
+!i113 1
+R6
+R7
+ntb_@f@i@r

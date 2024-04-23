@@ -1,0 +1,15 @@
+{C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/fir_v.v} {1 {vlog -work work -stats=none {C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/fir_v.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module FIR
+
+Top level modules:
+	FIR
+
+} {} {}} {C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/tb_fir_v.v} {1 {vlog -work work -stats=none {C:/Users/murra/OneDrive - University of Cape Town/UCT/UCT 2024/EEE4120F/Yoda/Sim/tb_fir_v.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_FIR
+
+Top level modules:
+	tb_FIR
+
+} {} {}}
