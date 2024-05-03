@@ -7,19 +7,19 @@ module ADC (
     input wire req,      // Request signal from TSC
     input wire rst,      // Reset signal for ADC
     output reg rdy,      // Ready signal to indicate completion
-    output reg [7:0] dat, // Data output from the array
-    output reg [7:0] len
+    output reg [15:0] dat, // Data output from the array
+    output reg [15:0] len
 );
 
 // Constant array of values (16 data values)
   // reg [7:0]
   // integer adc_data [15:0] = {
-  reg [0:7] adc_data [0:31];
+  reg [15:0] adc_data [0:1023];
   // Additional variables
-  reg [7:0] file_index; // Variable to keep track of the current index in the array
+  reg [15:0] file_index; // Variable to keep track of the current index in the array
   reg data_ready;       // Flag to indicate if data is ready to be output
   integer file;         // File handle variable
-  integer idx;
+  reg [15:0] idx;
   integer value;
   integer e;
 
@@ -33,7 +33,7 @@ initial begin
         $stop;
     end
     // Read the entire CSV file into adc_data array
-    while (idx < 32 && !$feof(file)) begin
+    while (idx < 10000 && !$feof(file)) begin
         len = len + 1;
         // Read the next value from the file
         e = $fscanf(file, "%d", value);
@@ -41,12 +41,15 @@ initial begin
         
         // Check if the value is 255
         if (value == 255) begin
+            //$display("End reading");
             adc_data[idx] = value;
             // If value is 255, exit the loop
-            idx = 32;
+            idx = 10000;
         end else begin
             // Otherwise, process the value (in this example, store it in an array)
+            //$display("%d",adc_data[idx]);
             adc_data[idx] = value;
+            //$display("%d",idx);
             idx = idx + 1;
         end
     end
@@ -54,6 +57,7 @@ initial begin
     $fclose(file);
     // Set data ready flag
     file_index = 0;
+    //$display("%d",len);
   end
 
 
@@ -71,7 +75,7 @@ always @ (posedge req or posedge rst) begin
     
     end else if (req && data_ready) begin
         // Read data from the sample array using modular arithmetic
-        dat <= adc_data[file_index % 32]; // Wrap around if file_index exceeds 31
+        dat <= adc_data[file_index % 10000]; // Wrap around if file_index exceeds BIG
         file_index <= file_index + 1;
         //#1$display("%d",file_index);
         //#1$display("%d",dat);
