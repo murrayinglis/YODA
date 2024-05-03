@@ -9,7 +9,7 @@ module SF (
 );
 
 // Internal registers for filter
-parameter reg [15:0] M = 5; //Size of filter
+parameter reg [15:0] M = 51; //Size of filter
 parameter reg [31:0] len = 1000;
 int sum;
 int started;
@@ -75,7 +75,7 @@ always @(posedge clk) begin
         
 
         file = $fopen("output.csv", "w"); // Open the file for writing
-        for (int i = 0; i < len-30; i = i + 1) begin
+        for (int i = 0; i < len-M; i = i + 1) begin
             $fwrite(file, "%d\n", filtered_data[i]); // Write each element followed by a space separator
         end
         $fclose(file); // Close the file
