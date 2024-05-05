@@ -8,20 +8,19 @@ module testbench;
 
 
 // Inputs
-reg [15:0] x_in [0:DATA_SIZE-1];
-reg signed [15:0] m, b;
-reg [7:0] start;
-reg [7:0] rst;
+reg signed [15:0] x_in [0:DATA_SIZE-1];
+reg start;
+reg rst;
+reg [15:0] shift;
 
 // Outputs
 wire [15:0] x_out [0:DATA_SIZE-1];
 
-LSR lsr (
+LSR2 lsr (
     .data(x_in),
-    .m(m),
-    .b(b),
     .start(start),
-    .rst(rst)
+    .rst(rst),
+    .shift(shift)
 );
 
 integer eof;
@@ -46,9 +45,12 @@ initial begin
       end else begin
         // Read integer from file
         fart = $fscanf(file, "%d", x_in[idx]);
+        $display("x: %d, y: %d", idx,x_in[idx]);
         idx = idx + 1;
       end
     end
+
+    shift = 0;
 
     rst = 1;
     #100 rst = 0;
@@ -62,8 +64,6 @@ initial begin
     $finish;
 end
 
-always @* begin
-  //$display("b: %d, m: %d",b,m);
-end
+
 
 endmodule

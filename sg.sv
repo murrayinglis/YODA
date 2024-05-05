@@ -4,19 +4,29 @@ module SG(
     input start,
     output reg done
 );
+
+parameter WINDOW_SIZE = 7;
+parameter POLYNOMIAL_DEGREE = 3; // Using linear for now
+parameter len = 1000;
+parameter ITERATIONS = 1000;
+
 reg [7:0] data [0:1023];
 reg [7:0] data_out [0:1023];
 
-parameter WINDOW_SIZE = 7;
-parameter POLYNOMIAL_DEGREE = 3;
-parameter len = 1000;
 
 reg signed [15:0] data_window [0:WINDOW_SIZE-1];
+reg signed [15:0] val;
+real b,m;
+real partial_b = 0;
+real partial_m = 0;
+reg signed [15:0] x,y;
+reg signed [15:0] pred = 0;
+
+
 
 integer i;
-
-reg signed [31:0] sum = 0; // Extended size to avoid overflow
-integer j;
+integer signed j;
+integer k;
 
 int started;
 int eof;
@@ -57,8 +67,31 @@ always @(posedge clk or posedge rst) begin
         end
     end else begin
         if (started) begin
-            // slide the window along the data_in array
-
+            for (i = WINDOW_SIZE/2; i<len-WINDOW_SIZE/2; i = i+1) begin
+                // Setup data window
+                for (j = -3; j<WINDOW_SIZE; j=j+1) begin
+                    data_window[j] = data[i+j];
+                end
+                // Get coefficients
+                for (k = 0; k < ITERATIONS; k = k + 1) begin
+                    for (j = 0; j < WINDOW_SIZE; j = j + 1) begin
+                        x = j;
+                        y = data[j];
+                        pred = m*x + b;
+                        partial_b = partial_b + 2*(pred - y);
+                        partial_m = partial_m + 2*(pred - y)*x;     
+                    end
+                    partial_b = partial_b / WINDOW_SIZE;
+                    partial_m = partial_m / WINDOW_SIZE;
+                    b = b - 0.0001*partial_b;
+                    m = m - 0.0001*partial_m;
+                    partial_m = 0;
+                    partial_b = 0;
+                end
+                // Get value from coefficients
+                val = m*i+b;
+                data_out[i] = val;
+            end
         end
 
 

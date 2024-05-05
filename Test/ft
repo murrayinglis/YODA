@@ -1,0 +1,136 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2009.vpi";
+S_000001f5e3c49980 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_000001f5e3c468e0 .scope module, "fixedtest" "fixedtest" 3 1;
+ .timescale 0 0;
+P_000001f5e3c983f0 .param/real "SF" 1 3 5, Cr<m4000000000000000gfbe>; value=0.0625000
+v000001f5e3c46a70_0 .var/s "a", 7 0;
+v000001f5e3c46b10_0 .var/s "ab", 15 0;
+v000001f5e3c46bb0_0 .var/s "b", 7 0;
+v000001f5e3c46c50_0 .var/s "c", 7 0;
+    .scope S_000001f5e3c468e0;
+T_0 ;
+    %vpi_call/w 3 8 "$display", "Fixed Point Examples from projectf.io." {0 0 0};
+    %pushi/vec4 58, 0, 8;
+    %store/vec4 v000001f5e3c46a70_0, 0, 8;
+    %pushi/vec4 65, 0, 8;
+    %store/vec4 v000001f5e3c46bb0_0, 0, 8;
+    %load/vec4 v000001f5e3c46a70_0;
+    %load/vec4 v000001f5e3c46bb0_0;
+    %add;
+    %store/vec4 v000001f5e3c46c50_0, 0, 8;
+    %load/vec4 v000001f5e3c46a70_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 13 "$itor", W<0,r> {0 1 0};
+    %load/vec4 v000001f5e3c46bb0_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 13 "$itor", W<0,r> {0 1 0};
+    %load/vec4 v000001f5e3c46c50_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 13 "$itor", W<0,r> {0 1 0};
+    %vpi_call/w 3 13 "$display", "%f + %f = %f", W<2,r>, W<1,r>, W<0,r> {0 3 0};
+    %pushi/vec4 58, 0, 8;
+    %store/vec4 v000001f5e3c46a70_0, 0, 8;
+    %pushi/vec4 232, 0, 8;
+    %store/vec4 v000001f5e3c46bb0_0, 0, 8;
+    %load/vec4 v000001f5e3c46a70_0;
+    %load/vec4 v000001f5e3c46bb0_0;
+    %add;
+    %store/vec4 v000001f5e3c46c50_0, 0, 8;
+    %load/vec4 v000001f5e3c46a70_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 18 "$itor", W<0,r> {0 1 0};
+    %load/vec4 v000001f5e3c46bb0_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 18 "$itor", W<0,r> {0 1 0};
+    %load/vec4 v000001f5e3c46c50_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 18 "$itor", W<0,r> {0 1 0};
+    %vpi_call/w 3 18 "$display", "%f + %f = %f", W<2,r>, W<1,r>, W<0,r> {0 3 0};
+    %pushi/vec4 52, 0, 8;
+    %store/vec4 v000001f5e3c46a70_0, 0, 8;
+    %pushi/vec4 33, 0, 8;
+    %store/vec4 v000001f5e3c46bb0_0, 0, 8;
+    %load/vec4 v000001f5e3c46a70_0;
+    %pad/s 16;
+    %load/vec4 v000001f5e3c46bb0_0;
+    %pad/s 16;
+    %mul;
+    %store/vec4 v000001f5e3c46b10_0, 0, 16;
+    %load/vec4 v000001f5e3c46b10_0;
+    %parti/s 8, 4, 4;
+    %store/vec4 v000001f5e3c46c50_0, 0, 8;
+    %load/vec4 v000001f5e3c46a70_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 24 "$itor", W<0,r> {0 1 0};
+    %load/vec4 v000001f5e3c46bb0_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 24 "$itor", W<0,r> {0 1 0};
+    %load/vec4 v000001f5e3c46c50_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 24 "$itor", W<0,r> {0 1 0};
+    %vpi_call/w 3 24 "$display", "%f * %f = %f", W<2,r>, W<1,r>, W<0,r> {0 3 0};
+    %pushi/vec4 120, 0, 8;
+    %store/vec4 v000001f5e3c46a70_0, 0, 8;
+    %pushi/vec4 8, 0, 8;
+    %store/vec4 v000001f5e3c46bb0_0, 0, 8;
+    %load/vec4 v000001f5e3c46a70_0;
+    %pad/s 16;
+    %load/vec4 v000001f5e3c46bb0_0;
+    %pad/s 16;
+    %mul;
+    %store/vec4 v000001f5e3c46b10_0, 0, 16;
+    %load/vec4 v000001f5e3c46b10_0;
+    %parti/s 8, 4, 4;
+    %store/vec4 v000001f5e3c46c50_0, 0, 8;
+    %load/vec4 v000001f5e3c46a70_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 30 "$itor", W<0,r> {0 1 0};
+    %load/vec4 v000001f5e3c46bb0_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 30 "$itor", W<0,r> {0 1 0};
+    %load/vec4 v000001f5e3c46c50_0;
+    %cvt/rv/s;
+    %pushi/real 1073741824, 4062; load=0.0625000
+    %mul/wr;
+    %vpi_func/r 3 30 "$itor", W<0,r> {0 1 0};
+    %vpi_call/w 3 30 "$display", "%f * %f = %f", W<2,r>, W<1,r>, W<0,r> {0 3 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "fixedtest.v";
