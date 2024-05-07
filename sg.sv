@@ -7,7 +7,7 @@ module SG(
 
 parameter WINDOW_SIZE = 7;
 parameter POLYNOMIAL_DEGREE = 3; // Using linear for now
-parameter len = 1000;
+parameter DATA_SIZE = 1000;
 parameter ITERATIONS = 1000;
 
 reg [7:0] data [0:1023];
@@ -67,12 +67,12 @@ always @(posedge clk or posedge rst) begin
         end
     end else begin
         if (started) begin
-            for (i = WINDOW_SIZE/2; i<len-WINDOW_SIZE/2; i = i+1) begin
+            for (i = WINDOW_SIZE/2; i<DATA_SIZE-WINDOW_SIZE/2; i = i+1) begin
                 // Setup data window
                 for (j = -3; j<WINDOW_SIZE; j=j+1) begin
                     data_window[j] = data[i+j];
                 end
-                // Get coefficients
+                // Get coefficients for data window (fitting polynomial)
                 for (k = 0; k < ITERATIONS; k = k + 1) begin
                     for (j = 0; j < WINDOW_SIZE; j = j + 1) begin
                         x = j;
@@ -92,11 +92,19 @@ always @(posedge clk or posedge rst) begin
                 val = m*i+b;
                 data_out[i] = val;
             end
+            
+            // Pad before and after window size with values
+            for(i = 0; i<WINDOW_SIZE/2; i=i+1) begin
+                data_out[i] = data_out[WINDOW_SIZE/2];
+            end
+            for(i = DATA_SIZE - WINDOW_SIZE/2; i<DATA_SIZE; i=i+1) begin
+                data_out[i] = data_out[DATA_SIZE - WINDOW_SIZE/2 -1];
+            end
         end
 
 
         file = $fopen("output.csv", "w"); // Open the file for writing
-        for (int i = 0; i < len; i = i + 1) begin
+        for (int i = 0; i < DATA_SIZE; i = i + 1) begin
             $fwrite(file, "%d\n", data_out[i]); // Write each element followed by a space separator
         end
         $fclose(file); // Close the file
