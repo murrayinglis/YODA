@@ -16,7 +16,7 @@ reg [15:0] shift;
 // Outputs
 wire [15:0] x_out [0:DATA_SIZE-1];
 
-LSR2 lsr (
+LSR3 lsr (
     .data(x_in),
     .start(start),
     .rst(rst),
@@ -45,7 +45,7 @@ initial begin
       end else begin
         // Read integer from file
         fart = $fscanf(file, "%d", x_in[idx]);
-        $display("x: %d, y: %d", idx,x_in[idx]);
+        //$display("x: %d, y: %d", idx,x_in[idx]);
         idx = idx + 1;
       end
     end
@@ -56,11 +56,12 @@ initial begin
     #100 rst = 0;
 
     start = 1;
-    #1000 start = 0;
+    #1000000000 start = 0;
+  
 
 
 
-    #1; // Wait for one more time unit before ending simulation
+    #10000;
     $finish;
 end
 

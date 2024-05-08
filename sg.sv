@@ -6,9 +6,7 @@ module SG(
 );
 
 parameter WINDOW_SIZE = 7;
-parameter POLYNOMIAL_DEGREE = 3; // Using linear for now
 parameter DATA_SIZE = 1000;
-parameter DATA_STEP = 1/DATA_SIZE;
 parameter ITERATIONS = 1000;
 parameter ALPHA = 0.000001;
 
@@ -20,9 +18,11 @@ real data_out_y [0:1023];
 
 real data_window [0:WINDOW_SIZE-1];
 real val;
-real b,m;
-real partial_b = 0;
-real partial_m = 0;
+real a0,a1,a2,a3;
+real partial_a0 = 0;
+real partial_a1 = 0;
+real partial_a2 = 0;
+real partial_a3 = 0;
 real x,y;
 real pred = 0;
 
@@ -71,16 +71,20 @@ always @(posedge clk or posedge rst) begin
         for (i = 0; i < WINDOW_SIZE; i = i + 1) begin
             data_window[i] <= 0;
         end
-        partial_b = 0;
-        partial_m = 0;
-        b = 0;
-        m = 0;
+        partial_a0 = 0;
+        partial_a1 = 0;
+        partial_a2 = 0;
+        partial_a3 = 0;
+        a0 = 0;
+        a1 = 0;
+        a2 = 0;
+        a3 = 0;
     end else begin
         if (started) begin
             for (i = WINDOW_SIZE/2; i<DATA_SIZE-WINDOW_SIZE/2; i = i+1) begin
                 // Setup data window
-                for (j = -3; j<(WINDOW_SIZE-3); j=j+1) begin
-                    data_window[j+3] = data_y[i+j];
+                for (j = -(WINDOW_SIZE/2); j<(WINDOW_SIZE-WINDOW_SIZE/2); j=j+1) begin
+                    data_window[j+WINDOW_SIZE/2] = data_y[i+j];
                     //$display("%d",data_window[j+3]);
                 end
                 // Get coefficients for data window (fitting polynomial)
@@ -88,25 +92,37 @@ always @(posedge clk or posedge rst) begin
                     for (j = 0; j < WINDOW_SIZE; j = j + 1) begin
                         x = j;
                         y = data_y[j+i];
-                        pred = m*x + b;
+                        pred = a0 + a1*x + a2*x**2 + a3*x**3;
                         //$display("%f %f %f",x,y,pred);
-                        partial_b = partial_b + 2*(pred - y);
-                        partial_m = partial_m + 2*(pred - y)*x;     
+                        partial_a0 = partial_a0 + 2*(pred - y);
+                        partial_a1 = partial_a1 + 2*x*(pred - y);
+                        partial_a2 = partial_a2 + 2*(x**2)*(pred - y);
+                        partial_a3 = partial_a3 + 2*(x**3)*(pred - y);
                     end
-                    partial_b = partial_b / WINDOW_SIZE;
-                    partial_m = partial_m / WINDOW_SIZE;
-                    b = b - ALPHA*partial_b;
-                    m = m - ALPHA*partial_m;
-                    partial_m = 0;
-                    partial_b = 0;
+                    partial_a0 = partial_a0 / WINDOW_SIZE;
+                    partial_a1 = partial_a1 / WINDOW_SIZE;
+                    partial_a2 = partial_a2 / WINDOW_SIZE;
+                    partial_a3 = partial_a3 / WINDOW_SIZE;
+                    a0 = a0 - ALPHA*partial_a0;
+                    a1 = a1 - ALPHA*partial_a1;
+                    a2 = a2 - ALPHA*partial_a2;
+                    a3 = a3 - ALPHA*partial_a3;
+                    partial_a0 = 0;
+                    partial_a1 = 0;
+                    partial_a2 = 0;
+                    partial_a3 = 0;
                 end
                 //$display("x:%d %d",j+i);
                 // Get value from coefficients
-                val = m*3+b;
+                x = WINDOW_SIZE/2;
+                val = a0 + a1*x + a2*x**2 + a3*x**3;
                 data_out_y[i] = val;
-                //$display("Fitted line: %fx + %f. %f",m,b,val);
-                m = 0;
-                b = 0;
+
+                //$display("Fitted line: %f + %fx + %fx^2 +%fx^3. %f",a0,a1,a2,a3,val);
+                a0 = 0;
+                a1 = 0;
+                a2 = 0;
+                a3 = 0;
             end
 
             // Pad before and after window size with values
