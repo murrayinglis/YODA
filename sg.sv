@@ -1,7 +1,7 @@
 module SG(
-    input clk,
-    input rst,
-    input start,
+    input wire clk,
+    input wire rst,
+    input wire start,
     output reg done
 );
 
