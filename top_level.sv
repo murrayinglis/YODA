@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module top_level#(FILT_SIZE=10, DATA_LEN=100)(input wire clk, input wire rx_serial, input wire[7:0] src, input wire[7:0] len, input wire[7:0] dest, input wire begin_filter, output reg process_done);
+module top_level#(FILT_SIZE=10, DATA_LEN=100)(input wire clk, input wire rx_serial, input wire[7:0] src, input wire[7:0] len, input wire[7:0] dest, input wire begin_filter, input wire transmit_result,  output reg process_done);
 
 /*
 INPUTS:
@@ -80,6 +80,13 @@ always @ (posedge clk) begin
                     we <= 1;
                     state <= POPULATE_RAM;
                 end
+                else if(transmit_result) begin
+                    we <= 0;
+                    oe <= 1;
+                    address <= dest;
+                    wait_cycle <= 1;
+                    state <= TRANSMIT;
+                end
                 else state <= IDLE;
             end
             POPULATE_RAM: begin
@@ -143,11 +150,7 @@ always @ (posedge clk) begin
                     spots <= spots + 1;
                     $display("Writing mem[%d] <- %d", address, data_value);
                 end else begin
-                    state <= TRANSMIT;
-                    we <= 0;
-                    oe <= 1;
-                    address <= dest;
-                    wait_cycle <= 1;
+                    state <= IDLE;
                 end
             end
             TRANSMIT: begin

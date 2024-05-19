@@ -4,9 +4,9 @@ module whole_tb();
     parameter c_BIT_PERIOD  = 8680;
 
     wire uart_line, process_done;
-    reg clk, begin_filter;
+    reg clk, begin_filter, transmit_result;
     reg[7:0] src = 8'd0, dest = 8'd150, len = 8'd100;
-    top_level top(clk, uart_line, src, len, dest, begin_filter, process_done);
+    top_level top(clk, uart_line, src, len, dest, begin_filter, transmit_result, process_done);
 
     reg rst, data_valid_tx;
     reg[7:0] tx_byte;
@@ -48,6 +48,10 @@ module whole_tb();
         begin_filter = 1;
         #10
         begin_filter = 0;
+        #5000
+        transmit_result = 1;
+        #10
+        transmit_result = 0;
     end
 
     always @ (posedge process_done) begin
