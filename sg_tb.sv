@@ -8,7 +8,7 @@ reg start;      // Start signal for SF
 
 
 // Instantiate SF module
-SG sg1 (
+SG2 sg1 (
     .clk(clk),
     .rst(sg_rst),
     .start(start)

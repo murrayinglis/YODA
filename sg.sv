@@ -6,9 +6,10 @@ module SG(
 );
 
 parameter WINDOW_SIZE = 7;
-parameter DATA_SIZE = 1000;
+parameter DATA_SIZE = 30;
 parameter ITERATIONS = 1000;
-parameter ALPHA = 0.000001;
+parameter ALPHA = 0.000001; // Learning rate
+parameter LAMBDA = 0.001; // Regularisation
 
 int data_y [0:1023];
 int data_x [0:1023];
@@ -87,6 +88,7 @@ always @(posedge clk or posedge rst) begin
                     data_window[j+WINDOW_SIZE/2] = data_y[i+j];
                     //$display("%d",data_window[j+3]);
                 end
+                a0 = data_window[0];
                 // Get coefficients for data window (fitting polynomial)
                 for (k = 0; k < ITERATIONS; k = k + 1) begin
                     for (j = 0; j < WINDOW_SIZE; j = j + 1) begin
@@ -103,6 +105,8 @@ always @(posedge clk or posedge rst) begin
                     partial_a1 = partial_a1 / WINDOW_SIZE;
                     partial_a2 = partial_a2 / WINDOW_SIZE;
                     partial_a3 = partial_a3 / WINDOW_SIZE;
+
+                    // Update prediction
                     a0 = a0 - ALPHA*partial_a0;
                     a1 = a1 - ALPHA*partial_a1;
                     a2 = a2 - ALPHA*partial_a2;
@@ -115,6 +119,7 @@ always @(posedge clk or posedge rst) begin
                 //$display("x:%d %d",j+i);
                 // Get value from coefficients
                 x = WINDOW_SIZE/2;
+                $display("a0:%d a1:%d a2:%d a3:%d",a0,a1,a2,a3);
                 val = a0 + a1*x + a2*x**2 + a3*x**3;
                 data_out_y[i] = val;
 

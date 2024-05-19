@@ -16,11 +16,10 @@ reg [15:0] shift;
 // Outputs
 wire [15:0] x_out [0:DATA_SIZE-1];
 
-LSR3 lsr (
+LSR4 lsr (
     .data(x_in),
     .start(start),
-    .rst(rst),
-    .shift(shift)
+    .rst(rst)
 );
 
 integer eof;
@@ -30,6 +29,7 @@ integer file;
 
 // Initialize inputs
 initial begin
+    $display("a");
     // Load x values
     eof = 0;
     idx = 0;
@@ -55,6 +55,7 @@ initial begin
     rst = 1;
     #100 rst = 0;
 
+    #100
     start = 1;
     #1000000000 start = 0;
   
