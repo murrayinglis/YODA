@@ -1,0 +1,75 @@
+
+*** Running vivado
+    with args -log top_level.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_level.tcl
+
+
+ECHO is off.
+ECHO is off.
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source top_level.tcl -notrace
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:23 . Memory (MB): peak = 455.227 ; gain = 183.766
+Command: read_checkpoint -auto_incremental -incremental {C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/Smoothing_Filter/Smoothing_Filter.srcs/utils_1/imports/synth_1/top_level.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/Smoothing_Filter/Smoothing_Filter.srcs/utils_1/imports/synth_1/top_level.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top top_level -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 22320
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:21 . Memory (MB): peak = 1311.656 ; gain = 439.430
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11065] parameter 'IDLE' becomes localparam in 'UART_RX' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/UART_Rx.sv:23]
+WARNING: [Synth 8-11065] parameter 'RX_START_BIT' becomes localparam in 'UART_RX' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/UART_Rx.sv:24]
+WARNING: [Synth 8-11065] parameter 'RX_DATA_BITS' becomes localparam in 'UART_RX' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/UART_Rx.sv:25]
+WARNING: [Synth 8-11065] parameter 'RX_STOP_BIT' becomes localparam in 'UART_RX' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/UART_Rx.sv:26]
+WARNING: [Synth 8-11065] parameter 'CLEANUP' becomes localparam in 'UART_RX' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/UART_Rx.sv:27]
+INFO: [Synth 8-11241] undeclared symbol 'tx_active', assumed default net type 'wire' [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:30]
+INFO: [Synth 8-11241] undeclared symbol 'tx_serial', assumed default net type 'wire' [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:30]
+WARNING: [Synth 8-11065] parameter 'IDLE' becomes localparam in 'top_level' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:41]
+WARNING: [Synth 8-11065] parameter 'POPULATE_RAM' becomes localparam in 'top_level' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:42]
+WARNING: [Synth 8-11065] parameter 'RESET' becomes localparam in 'top_level' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:43]
+WARNING: [Synth 8-11065] parameter 'FILTER' becomes localparam in 'top_level' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:44]
+WARNING: [Synth 8-11065] parameter 'WRITE' becomes localparam in 'top_level' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:45]
+WARNING: [Synth 8-11065] parameter 'READ_OUTPUT' becomes localparam in 'top_level' with formal parameter declaration list [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:46]
+INFO: [Synth 8-6157] synthesizing module 'top_level' [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:3]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:64]
+INFO: [Synth 8-6157] synthesizing module 'ramcu' [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/mcu.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'ramcu' (0#1) [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/mcu.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'SF' [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:3]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+WARNING: [Synth 8-6090] variable 'sum' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:42]
+INFO: [Synth 8-6155] done synthesizing module 'SF' (0#1) [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/sf_synth.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'UART_RX' [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/UART_Rx.sv:14]
+INFO: [Synth 8-6155] done synthesizing module 'UART_RX' (0#1) [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/UART_Rx.sv:14]
+ERROR: [Synth 8-439] module 'UART_TX' not found [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:30]
+ERROR: [Synth 8-6156] failed synthesizing module 'top_level' [C:/Users/danro/OneDrive - University of Cape Town/Fourth Year/EEE4120F/YODA/YODA/top_level.sv:3]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:27 . Memory (MB): peak = 1418.551 ; gain = 546.324
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+19 Infos, 22 Warnings, 0 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Sun May 19 22:37:57 2024...
