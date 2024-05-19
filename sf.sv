@@ -49,7 +49,7 @@ always @(posedge start) begin
     started = 1;
 end
 
-always @(posedge clk) begin 
+always @* begin 
     if (rst) begin
         $display("SF module reset");
         sum <= 0;
@@ -76,7 +76,7 @@ always @(posedge clk) begin
 
         file = $fopen("output.csv", "w"); // Open the file for writing
         for (int i = 0; i < len-M; i = i + 1) begin
-            $fwrite(file, "%d\n", filtered_data[i]); // Write each element followed by a space separator
+            $fwrite(file, "%f\n", filtered_data[i]); // Write each element followed by a space separator
         end
         $fclose(file); // Close the file
     end
