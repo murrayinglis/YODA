@@ -16,6 +16,7 @@ reg [15:0] shift;
 // Outputs
 wire [15:0] x_out [0:DATA_SIZE-1];
 
+// Instantiate LSR module
 LSR4 lsr (
     .data(x_in),
     .start(start),
@@ -57,7 +58,7 @@ initial begin
 
     #100
     start = 1;
-    #1000000000 start = 0;
+    #1000000000 start = 0; 
   
 
 
