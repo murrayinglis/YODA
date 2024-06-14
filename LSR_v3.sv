@@ -1,3 +1,5 @@
+// 3rd version of Linear Regression. This is order 5
+
 module LSR3 (
     input signed [15:0] data [0:DATA_SIZE-1], // Input array of data points
     input reg [15:0] shift, // how much window is shifted by
